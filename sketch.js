@@ -143,17 +143,37 @@ function playTrack() {
 }
 
 function playTrackRecursively(id) {
-  console.log(recursiveID);
   var delay = 0;
   isTrackPlaying = true;
-  playNote(mainTrack[id][0], 0);
-  if (id < mainTrack.length - 1 && isTrackPlaying){
+  //playNote(mainTrack[id][0], 0);
+  var notesBatch = getNotesOfSameStartTime(mainTrack[id][1]);
+  playNotesInBatch(notesBatch);
+
+  if (id + notesBatch.length < mainTrack.length - 1 && isTrackPlaying){
     delay = mainTrack[id + 1][1] - mainTrack[id][1];
     recursiveID = setTimeout(function() {
-      playTrackRecursively(id + 1);
+      playTrackRecursively(id + notesBatch.length);
     }, delay * 1000);
   }
   isTrackPlaying = false;
+}
+
+function playNotesInBatch(notes) {
+  console.log(notes);
+  for (var i = 0; i < notes.length; i++) {
+    playNote(notes[i][0], notes[i][1]);
+  }
+}
+
+function getNotesOfSameStartTime(startTime) {
+  var indexArray = []
+  for (var i = 0; i < mainTrack.length; i++) {
+    if (mainTrack[i][1] == startTime) {
+      indexArray.push(i);
+    }
+  }
+  var batch = mainTrack.slice(indexArray[0], indexArray[indexArray.length - 1] + 1);
+  return batch;
 }
 
 function stopTrack() {

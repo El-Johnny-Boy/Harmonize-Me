@@ -1,1 +1,1 @@
-Harmonize-me
+Harmonize me is an app that lets you write a guitar riff, select a scale, and automatically harmonize it for you ! (Well ... At least that's what I aim to do :P)
