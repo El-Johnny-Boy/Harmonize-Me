@@ -123,39 +123,21 @@ function cancel() {
 }
 
 function playTrack() {
-  var playTime = audioContext.currentTime;
   mainTrack.sort(function(a, b) {return a[1] - b[1]})
-
-  var endTime = 12.5;
-  var i = 0;
-  var noteStartTime = mainTrack[i][1];
-  while (audioContext.currentTime - playTime < 5) {
-    actualTime = audioContext.currentTime - playTime;
-
-    if (actualTime > noteStartTime && actualTime < noteStartTime + 0.25 && i < mainTrack.length) {
-      playNote(mainTrack[i][0], mainTrack[i][1]);
-      i++;
-      if (i < mainTrack.length) {
-        noteStartTime = mainTrack[i][1];
-      }
-    }
-  }
+  playTrackRecursively(0);
 }
 
 function playTrackRecursively(id) {
   var delay = 0;
   isTrackPlaying = true;
-  //playNote(mainTrack[id][0], 0);
   var notesBatch = getNotesOfSameStartTime(mainTrack[id][1]);
   playNotesInBatch(notesBatch);
-
-  if (id + notesBatch.length < mainTrack.length - 1 && isTrackPlaying){
-    delay = mainTrack[id + 1][1] - mainTrack[id][1];
+  if (id + notesBatch.length < mainTrack.length && isTrackPlaying){
+    delay = mainTrack[id + notesBatch.length][1] - mainTrack[id][1];
     recursiveID = setTimeout(function() {
       playTrackRecursively(id + notesBatch.length);
     }, delay * 1000);
   }
-  isTrackPlaying = false;
 }
 
 function playNotesInBatch(notes) {
@@ -178,7 +160,8 @@ function getNotesOfSameStartTime(startTime) {
 
 function stopTrack() {
   isTrackPlaying = false;
-
+  clearTimeout(recursiveID);
+  player.cancelQueue(audioContext);
 }
 
 function resetSheet() {
