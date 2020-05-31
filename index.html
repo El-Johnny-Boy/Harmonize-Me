@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+    <script src='https://surikov.github.io/webaudiofont/npm/dist/WebAudioFontPlayer.js'></script>
+		<script src='https://surikov.github.io/webaudiofontdata/sound/0253_Acoustic_Guitar_sf2_file.js'></script>
+    <script src="sketch.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="navbar">
+      <button id="Play" onclick="playTrackRecursively(0)">Play</button>
+      <button id="Stop" onclick="cancel()">Stop</button>
+      <button id="Reset" onclick="resetSheet()">Reset</button>
+      <a>Scale</a>
+      <a>Harmony</a>
+      <a>Go!</a>
+    </div>
+    <div class="row">
+      <div class="column">
+        <img src="keyboard.png"/>
+      </div>
+      <div class="column" id="sketch-holder">
+      </div>
+    </div>
+  </body>
+</html>
