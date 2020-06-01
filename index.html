@@ -4,22 +4,220 @@
     <script src='https://surikov.github.io/webaudiofont/npm/dist/WebAudioFontPlayer.js'></script>
 		<script src='https://surikov.github.io/webaudiofontdata/sound/0253_Acoustic_Guitar_sf2_file.js'></script>
     <script src="sketch.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="navbar">
+    <div>
       <button id="Play" onclick="playTrack()">Play</button>
       <button id="Stop" onclick="stopTrack()">Stop</button>
       <button id="Reset" onclick="resetSheet()">Reset</button>
-      <a>Scale</a>
-      <a>Harmony</a>
-      <a>Go!</a>
     </div>
     <div class="row">
       <div class="column">
         <img src="keyboard.png"/>
       </div>
       <div class="column" id="sketch-holder">
+      </div>
+      <div class="column">
+        <div class="navbar">
+        </div>
+      </div>
+      <div class="column">
+        <label class="container" id="amajor">A Major
+          <input type="radio" name="radio" value="0">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">A# Major
+          <input type="radio" name="radio" value="1">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">B Major
+          <input type="radio" name="radio" value="2">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">C Major
+          <input type="radio" name="radio" value="3">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">C# Major
+          <input type="radio" name="radio" value="4">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">D Major
+          <input type="radio" name="radio" value="5">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">D# Major
+          <input type="radio" name="radio" value="6">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">E Major
+          <input type="radio" name="radio" value="7">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">F Major
+          <input type="radio" name="radio" value="8">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">F# Major
+          <input type="radio" name="radio" value="9">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">G Major
+          <input type="radio" name="radio" value="10">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">G# Major
+          <input type="radio" name="radio" value="11">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">A Major Pentatonic
+          <input type="radio" name="radio" value="12">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">A# Major Pentatonic
+          <input type="radio" name="radio" value="13">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">B Major Pentatonic
+          <input type="radio" name="radio" value="14">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">C Major Pentatonic
+          <input type="radio" name="radio" value="15">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">C# Major Pentatonic
+          <input type="radio" name="radio" value="16">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">D Major Pentatonic
+          <input type="radio" name="radio" value="17">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">D# Major Pentatonic
+          <input type="radio" name="radio" value="18">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">E Major Pentatonic
+          <input type="radio" name="radio" value="19">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">F Major Pentatonic
+          <input type="radio" name="radio" value="20">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">F# Major Pentatonic
+          <input type="radio" name="radio" value="21">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">G Major Pentatonic
+          <input type="radio" name="radio" value="22">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">G# Major Pentatonic
+          <input type="radio" name="radio" value="23">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="column">
+        <label class="container">A Minor
+          <input type="radio" name="radio" value="24">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">A# Minor
+          <input type="radio" name="radio" value="25">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">B Minor
+          <input type="radio" name="radio" value="26">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">C Minor
+          <input type="radio" name="radio" value="27">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">C# Minor
+          <input type="radio" name="radio" value="28">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">D Minor
+          <input type="radio" name="radio" value="29">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">D# Minor
+          <input type="radio" name="radio" value="30">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">E Minor
+          <input type="radio" name="radio" value="31">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">F Minor
+          <input type="radio" name="radio" value="32">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">F# Minor
+          <input type="radio" name="radio" value="33">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">G Minor
+          <input type="radio" name="radio" value="34">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">G# Minor
+          <input type="radio" name="radio" value="35">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">A Minor Pentatonic
+          <input type="radio" name="radio" value="36">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">A# Minor Pentatonic
+          <input type="radio" name="radio" value="37">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">B Minor Pentatonic
+          <input type="radio" name="radio" value="38">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">C Minor Pentatonic
+          <input type="radio" name="radio" value="39">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">C# Minor Pentatonic
+          <input type="radio" name="radio" value="40">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">D Minor Pentatonic
+          <input type="radio" name="radio" value="41">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">D# Minor Pentatonic
+          <input type="radio" name="radio" value="42">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">E Minor Pentatonic
+          <input type="radio" name="radio" value="43">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">F Minor Pentatonic
+          <input type="radio" name="radio" value="44">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">F# Minor Pentatonic
+          <input type="radio" name="radio" value="45">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">G Minor Pentatonic
+          <input type="radio" name="radio" value="46">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">G# Minor Pentatonic
+          <input type="radio" name="radio" value="47">
+          <span class="checkmark"></span>
+        </label>
       </div>
     </div>
   </body>
