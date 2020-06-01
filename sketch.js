@@ -1,6 +1,8 @@
 var cols, rows;
 var w = 24;
 var grid = [];
+var tempTileSize = 1;
+var tileSize = 1;
 
 var guitar = _tone_0253_Acoustic_Guitar_sf2_file;
 var AudioContextFunc = window.AudioContext || window.webkitAudioContext;
@@ -43,6 +45,12 @@ function mousePressed() {
   }
 }
 
+function mouseWheel(event) {
+  tempTileSize += event.delta / -100;
+  tileSize = Math.min(Math.max(parseInt(tempTileSize), 1), 8);
+  console.log(tileSize);
+
+}
 
 function Cell(i, j) {
   this.i = i;
@@ -60,7 +68,10 @@ function Cell(i, j) {
     var y = this.j * w;
 
     if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + w) {
-      this.isHiglighted = true;
+      //this.isHiglighted = true;
+      for (var i = 0; i < tileSize; i++) {
+        grid[i].isHiglighted = true;
+      }
     }
     else {
       this.isHiglighted = false;
@@ -123,13 +134,13 @@ function cancel() {
 }
 
 function playTrack() {
+  isTrackPlaying = true;
   mainTrack.sort(function(a, b) {return a[1] - b[1]})
   playTrackRecursively(0);
 }
 
 function playTrackRecursively(id) {
   var delay = 0;
-  isTrackPlaying = true;
   var notesBatch = getNotesOfSameStartTime(mainTrack[id][1]);
   playNotesInBatch(notesBatch);
   if (id + notesBatch.length < mainTrack.length && isTrackPlaying){
