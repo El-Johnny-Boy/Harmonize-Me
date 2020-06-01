@@ -16,6 +16,7 @@ var recursiveID;
 
 player.loader.decodeAfterLoading(audioContext, '_tone_0253_Acoustic_Guitar_sf2_file');
 
+
 function setup() {
   var canvas = createCanvas(1200, 2112);
   canvas.parent('sketch-holder');
@@ -35,6 +36,12 @@ function draw() {
   for (var i = 0; i < grid.length; i++) {
     grid[i].show();
   }
+
+  let fps = frameRate();
+  fill(255);
+  stroke(0);
+  text("FPS: " + fps.toFixed(2), 10, height - 10);
+  
 }
 
 function mousePressed() {
@@ -141,7 +148,6 @@ function playTrackRecursively(id) {
 }
 
 function playNotesInBatch(notes) {
-  console.log(notes);
   for (var i = 0; i < notes.length; i++) {
     playNote(notes[i][0], notes[i][1]);
   }
